@@ -250,7 +250,12 @@ export default function({ types: t }) {
       const localeDir = this.opts.localeDir || opts.localeDir
       const { filename } = file.opts
       const baseDir = fsPath.dirname(fsPath.relative(optsBaseDir, filename))
-      const targetDir = fsPath.join(localeDir, "_build", baseDir)
+
+      /* if the path is relative and reverse to a directory outside
+       * the root, then we have to escape the ".." so that we still
+       * write to the build dir */
+      const escapedBaseDir = baseDir.replace(/\./g, "\\.")
+      const targetDir = fsPath.join(localeDir, "_build", escapedBaseDir)
 
       const messages = file.get(MESSAGES)
       const catalog = {}
