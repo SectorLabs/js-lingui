@@ -13,14 +13,6 @@ console.log('filename', filename);
 const patchVersion = input => `${input}-sl.${version}`;
 const patchDependencies = (dependencies) => {
     Object.keys(dependencies).forEach(depName => {
-        if (depName.includes('@babel')) {
-            dependencies[depName] = dependencies[depName]
-                .replace(/beta.40/g, 'beta.38')
-                .replace(/\^/g, '');
-
-            return;
-        }
-
         if (!depName.includes('@sector-labs') && !depName.includes('@lingui')) {
             return;
         }
