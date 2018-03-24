@@ -5,6 +5,23 @@ Seamless internationalization in Javascript and React
 </div>
 
 <hr />
+This is a Sector Labs fork of Lingui in which we maintain various patches that we intend contributing back:
+
+- Support for localized numerals.
+- A fix for extracting messages outside the root.
+- Support for babel 6.
+
+We publish packages on NPM with our forked version until we can get the changes merged upstream. These packages are name-spaced under `@sector-labs`. (`@lingui/cli` becomes `@sector-labs/lingui-cli`).
+
+In order to release a new forked package on NPM:
+
+    $ node ./scripts/build
+    $ ./scripts/patch.sh [version number]
+    $ node ./scripts/release/release-npm
+
+The version number specified is the "fork version". The patch script takes the current version listed in the `package.json` and appends `-sl.[version]`.
+
+<hr />
 
 [![Join the chat at https://gitter.im/lingui/js-lingui](https://badges.gitter.im/lingui/js-lingui.svg)](https://gitter.im/lingui/js-lingui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![CircleCI][Badge-CI]][CI] 
