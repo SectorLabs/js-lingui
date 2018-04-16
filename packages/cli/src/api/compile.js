@@ -128,7 +128,8 @@ export function createCompiledCatalog(
   messages: CatalogType,
   strict: boolean = false,
   namespace: string = "cjs",
-  pseudoLocale: string
+  pseudoLocale: string,
+  removeIdentityPairs: boolean = false
 ) {
   const [language] = locale.split(/[_-]/)
   let pluralRules = plurals[language]
@@ -136,13 +137,26 @@ export function createCompiledCatalog(
     pluralRules = plurals["en"]
   }
 
-  const compiledMessages = R.keys(messages).map(key => {
-    let translation = messages[key] || (!strict ? key : "")
-    if (locale === pseudoLocale) {
-      translation = pseudoLocalize(translation)
-    }
-    return t.objectProperty(t.stringLiteral(key), compile(translation))
-  })
+  const compiledMessages = R.keys(messages)
+    .filter(key => {
+      if (!removeIdentityPairs) {
+          return true
+      }
+
+      const compiledTranslation = compile(messages[key] || (!strict ? key : ""))
+
+      return !(
+        t.isStringLiteral(compiledTranslation) &&
+        compiledTranslation.value === key
+      )
+    })
+    .map(key => {
+      let translation = messages[key] || (!strict ? key : "")
+      if (locale === pseudoLocale) {
+        translation = pseudoLocalize(translation)
+      }
+      return t.objectProperty(t.stringLiteral(key), compile(translation))
+    })
 
   const languageData = [
     t.objectProperty(

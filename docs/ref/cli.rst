@@ -121,7 +121,7 @@ Prints additional information.
 ``compile``
 -----------
 
-.. lingui-cli:: compile [--strict] [--format <format>] [--verbose] [--namespace <namespace>]
+.. lingui-cli:: compile [--strict] [--format <format>] [--verbose] [--namespace <namespace>] [--removeIdentityPairs]
 
 This command compiles message catalogs in :conf:`localeDir` and outputs
 minified Javascript files. Each message is replaced with a function
@@ -145,3 +145,7 @@ Prints additional information.
 
 Specify namespace for compiled message catalogs (also see :conf:`compileNamespace` for
 global configuration).
+
+.. lingui-cli-option:: --removeIdentityPairs
+
+Reduces the catalog size by removing the entries that have a translation identical with the translation key.
