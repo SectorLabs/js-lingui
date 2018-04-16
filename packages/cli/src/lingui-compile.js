@@ -93,7 +93,8 @@ function command(config, options) {
       messages,
       false,
       options.namespace || config.compileNamespace,
-      config.pseudoLocale
+      config.pseudoLocale,
+      config.removeIdentityPairs
     )
     const compiledPath = catalog.writeCompiled(locale, compiledCatalog)
     if (options.typescript) {
@@ -124,6 +125,10 @@ if (require.main === module) {
     .option(
       "--namespace <namespace>",
       "Specify namespace for compiled bundle. Ex: cjs(default) -> module.exports, window.test -> window.test"
+    )
+    .option(
+      "--removeIdentityPairs",
+      "Reduces the catalog size by removing the entries that have a translation identical with the translation key"
     )
     .on("--help", function() {
       console.log("\n  Examples:\n")
