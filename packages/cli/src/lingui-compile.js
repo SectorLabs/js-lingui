@@ -84,7 +84,7 @@ function command(config, format, options) {
       }
     }
 
-    const compiledCatalog = createCompiledCatalog(locale, messages)
+    const compiledCatalog = createCompiledCatalog(locale, messages, options)
     const compiledPath = format.writeCompiled(locale, compiledCatalog)
 
     options.verbose && console.log(chalk.green(`${locale} ⇒ ${compiledPath}`))
@@ -100,6 +100,10 @@ if (require.main === module) {
     .option("--strict", "Disable defaults for missing translations")
     .option("--verbose", "Verbose output")
     .option("--format <format>", "Format of message catalog")
+    .option(
+      "--removeIdentityPairs",
+      "Reduces the catalog size by removing the entries that have a translation identical with the translation key"
+    )
     .on("--help", function() {
       console.log("\n  Examples:\n")
       console.log(

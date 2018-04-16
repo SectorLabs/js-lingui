@@ -97,7 +97,7 @@ Prints additional information.
 ``compile``
 -----------
 
-.. lingui-cli:: compile [--strict] [--format <format>] [--verbose]
+.. lingui-cli:: compile [--strict] [--format <format>] [--verbose] [--removeIdentityPairs]
 
 This command compiles message catalogs in :conf:`localeDir` and outputs
 minified Javascript files. Each message is replaced with a function
@@ -116,3 +116,7 @@ Format of message catalogs (see :conf:`format` option).
 .. lingui-cli-option:: --verbose
 
 Prints additional information.
+
+.. lingui-cli-option:: --removeIdentityPairs
+
+Reduces the catalog size by removing the entries that have a translation identical with the translation key.
