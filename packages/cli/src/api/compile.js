@@ -92,14 +92,31 @@ export function compile(message: string) {
   )
 }
 
-export function createCompiledCatalog(locale: string, messages: CatalogType) {
+export function createCompiledCatalog(
+  locale: string,
+  messages: CatalogType,
+  options: Object
+) {
   const [language] = locale.split("_")
   const pluralRules = plurals[language]
 
-  const compiledMessages = R.keys(messages).map(key => {
-    const translation = messages[key]
-    return t.objectProperty(t.stringLiteral(key), compile(translation || key))
-  })
+  const compiledMessages = R.keys(messages)
+    .filter(key => {
+      if (!(options && options.removeIdentityPairs)) {
+        return true
+      }
+
+      const compiledTranslation = compile(messages[key] || key)
+
+      return !(
+        t.isStringLiteral(compiledTranslation) &&
+        compiledTranslation.value === key
+      )
+    })
+    .map(key => {
+      const translation = messages[key]
+      return t.objectProperty(t.stringLiteral(key), compile(translation || key))
+    })
 
   const languageData = [
     t.objectProperty(
