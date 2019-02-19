@@ -16,7 +16,7 @@ const npmTagForBranch = {
   master: "latest",
   next: "next",
   "sl-master": "latest",
-  "sl-master-upgraded": "latest",
+  "sl-master-upgraded": "next",
 }
 
 async function devRelease() {
@@ -72,9 +72,6 @@ async function release() {
   if (build) {
     await exec("yarn release:build")
   }
-
-  // Set correct version in package.json for all packages
-  await preparePackageVersions(newVersion)
 
   // Don't commit package size stats for pre-releases
   if (npmTag !== "latest") {
