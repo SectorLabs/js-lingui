@@ -5,7 +5,24 @@
 
 <hr />
 
-[![CircleCI][Badge-CI]][CI]
+This is a Sector Labs fork of Lingui in which we maintain various patches that we intend contributing back:
+
+- A fix for extracting messages outside the root.
+- Command line option for optimizing for bundle size.
+
+We publish packages on NPM with our forked version until we can get the changes merged upstream. These packages are name-spaced under `@sector-labs`. (`@lingui/cli` becomes `@sector-labs/lingui-cli`).
+
+In order to release a new forked package on NPM:
+
+    $ node ./scripts/build
+    $ ./scripts/patch.sh [version number]
+    $ node ./scripts/release/release-npm
+
+The version number specified is the "fork version". The patch script takes the current version listed in the `package.json` and appends `-sl.[version]`.
+
+<hr />
+
+[![CircleCI][Badge-CI]][CI] 
 [![AppVeyor][Badge-AppVeyor]][AppVeyor]
 [![Code Coverage][Badge-Coverage]][Coverage]
 [![PRs Welcome][Badge-PRWelcome]][PRWelcome]

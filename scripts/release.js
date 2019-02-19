@@ -14,7 +14,9 @@ const PACKAGES_DIR = "build/packages"
 
 const npmTagForBranch = {
   master: "latest",
-  next: "next"
+  next: "next",
+  "sl-master": "latest",
+  "sl-master-upgraded": "latest",
 }
 
 async function devRelease() {
