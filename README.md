@@ -1,10 +1,9 @@
 <div align="center">
 <h1>Lingui<sub>js</sub></h1>
-
 🌍📖 A readable, automated, and optimized (5 kb) internationalization for JavaScript
+</div>
 
 <hr />
-
 This is a Sector Labs fork of Lingui in which we maintain various patches that we intend contributing back:
 
 - A fix for extracting messages outside the root.
@@ -19,7 +18,6 @@ In order to release a new forked package on NPM:
     $ node ./scripts/release/release-npm
 
 The version number specified is the "fork version". The patch script takes the current version listed in the `package.json` and appends `-sl.[version]`.
-
 <hr />
 
 [![CircleCI][Badge-CI]][CI] 
@@ -31,7 +29,6 @@ The version number specified is the "fork version". The patch script takes the c
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)][Spectrum]
 
 [**Documentation**][Documentation] · [**Quickstart**](#quickstart) · [**Example**](#example) · [**Support**](#support) · [**Contribute**](#contribute) · [**Licence**](#licence)
-</div>
 
 > Internationalization is the design and development of a product, application or document content that enables easy localization for target audiences that vary in culture, region, or language.
 >
