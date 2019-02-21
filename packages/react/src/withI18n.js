@@ -16,9 +16,9 @@ type withI18nProps = {
   i18n: I18nType
 }
 
-const withI18n = (options: withI18nOptions = {}) => <T: *>(
-  WrappedComponent: React.AbstractComponent<*>
-): React.AbstractComponent<$Diff<T, withI18nProps>> => {
+const withI18n = (options: withI18nOptions = {}) => <T: *, I>(
+  WrappedComponent: React.AbstractComponent<*, I>
+): React.AbstractComponent<$Diff<T, withI18nProps>, I> => {
     if (process.env.NODE_ENV !== "production") {
       if (typeof options === "function" || React.isValidElement(options)) {
         console.warn(
