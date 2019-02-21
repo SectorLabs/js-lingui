@@ -76,11 +76,12 @@ const PluralFactory = (ordinal = false) => {
         }
       )
 
+      const select = !ordinal ? i18n.plural : i18n.selectOrdinal
       return (
         <Render
           className={className}
           render={render}
-          value={i18n[pluralType](pluralProps)}
+          value={select(pluralProps)}
         />
       )
     }
