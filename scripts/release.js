@@ -42,7 +42,7 @@ async function npmPublish() {
 }
 
 async function npmPublishPackage(packagePath) {
-  const cmd = `npm publish --access public --tag next`
+  const cmd = `npm publish --access public --tag fork --tag latest`
   await exec(cmd, { cwd: packagePath })
 
   return true
