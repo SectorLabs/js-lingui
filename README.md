@@ -15,7 +15,7 @@ In order to release a new forked package on NPM:
 
     $ node ./scripts/build
     $ ./scripts/patch.sh [version number]
-    $ node ./scripts/release/release-npm
+    $ node ./scripts/release.js
 
 The version number specified is the "fork version". The patch script takes the current version listed in the `package.json` and appends `-sl.[version]`.
 <hr />
