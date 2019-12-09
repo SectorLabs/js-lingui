@@ -13,7 +13,6 @@ find build/ -name '*.*' | while read filename; do
 
     elif [[ $filename = *".js"* ]]; then
         # patch imports in js files
-        sed -i '.bak' 's/require("@lingui\//require("@sector-labs\/lingui-/' "$filename"
-        rm "$filename.bak"
+        sed -i '.bak' 's/@lingui\//@sector-labs\/lingui-/' "$filename"
     fi
 done
